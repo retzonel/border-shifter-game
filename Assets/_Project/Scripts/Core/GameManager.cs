@@ -18,23 +18,24 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
-    public void OnResourceDelivered(ResourceData resource)
-    {
-        completedDeliveries++;
-        if (completedDeliveries >= totalDeliveriesForLevel)
-            WinGame();
-    }
-
+    
     public void OnTeleportsExhausted()
     {
         //if the player has no more teleports and hasn't completed the deliveries, they lose
         Debug.Log("LOSE — no teleports left");
     }
+    
+    public void OnResourceDelivered(ResourceData resource)
+    {
+        completedDeliveries++;
+
+        if (completedDeliveries >= totalDeliveriesForLevel)
+            WinGame();
+    }
 
     void WinGame()
     {
         Debug.Log("WIN — borders dissolving!");
-        //show win screen
+        BorderManager.Instance?.CollapseBorders();
     }
 }
