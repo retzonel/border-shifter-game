@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 public class TeleportController : MonoBehaviour
 {
     [SerializeField] InputActionReference interactAction, pointerPosition, mouseClickAction;
-
-
+    
     Vector2 _pointerInput;
     public int maxCharges = 10;
 
@@ -16,7 +15,7 @@ public class TeleportController : MonoBehaviour
     [SerializeField] private GameObject bluePorterPrefab, orangePorterPrefab;
 
     [SerializeField] private LineRenderer
-        teleportLineRenderer; //for later visual feedback of teleportation path from pplayer{blue portal) to mouse position(orange portal)
+        teleportLineRenderer;
 
     void OnEnable()
     {
@@ -59,6 +58,8 @@ public class TeleportController : MonoBehaviour
         };
         pointerPosition.action.performed += ctx => _pointerInput = ctx.ReadValue<Vector2>();
         currentCharges = maxCharges;
+        GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
+
     }
 
     private void Update()
@@ -76,12 +77,13 @@ public class TeleportController : MonoBehaviour
         }
 
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(_pointerInput);
-        
-        
+
+
         PlacePortal(orangePorterPrefab, worldPos, ref currentOrangePortal);
-        
+
         transform.position = worldPos;
         currentCharges--;
+        GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
         AttemptingTeleport = false;
 
         Debug.Log("Teleported! Remaining charges: " + currentCharges);
@@ -105,14 +107,15 @@ public class TeleportController : MonoBehaviour
             teleportLineRenderer.enabled = false;
         }
     }
-    
+
     private GameObject currentBluePortal;
     private GameObject currentOrangePortal;
+
     private void PlacePortal(GameObject portalPrefab, Vector2 position, ref GameObject currentPortal)
     {
         if (currentPortal != null)
             Destroy(currentPortal);
-    
+
         if (portalPrefab != null)
             currentPortal = Instantiate(portalPrefab, position, Quaternion.identity);
     }

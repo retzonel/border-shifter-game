@@ -1,16 +1,27 @@
+using System;
 using UnityEngine;
 
 public class BorderManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public  static BorderManager Instance { get; private set; }
+    
+    [SerializeField] private Border[] borders;
+
+    private void Awake()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CollapseBorders()
     {
-        
+        foreach (var border in borders)
+        {
+            border.Collapse();
+        }
     }
 }

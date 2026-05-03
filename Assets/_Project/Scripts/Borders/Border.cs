@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class Border : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] Collider2D[] colliders;
+    [SerializeField] SpriteRenderer[] spriteRenderers;
 
-    // Update is called once per frame
-    void Update()
+    public void Collapse()
     {
-        
+        //will colapse the border visulay and disable its colider or colliders
     }
 }

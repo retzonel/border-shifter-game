@@ -16,6 +16,7 @@ public class ResourceCarrier : MonoBehaviour
                 CarriedResource = node.data;
                 node.OnPickUp();
                 Debug.Log("Picked up: " + CarriedResource.resourceName);
+                GameplayUI.Instance?.UpdateCarriedResource(CarriedResource);
             }
         }
 
@@ -28,13 +29,13 @@ public class ResourceCarrier : MonoBehaviour
                 zone.Deliver(CarriedResource);
                 CarriedResource = null;
                 Debug.Log("Delivered!");
+                GameplayUI.Instance?.UpdateCarriedResource(CarriedResource);
             }
         }
-
+    }
 
         bool CompareResource(ResourceData resource)
         {
             return CarriedResource.resourceType == resource.resourceType;
         }
-    }
 }
