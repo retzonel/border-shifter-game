@@ -4,12 +4,17 @@ public class ResourceCarrier : MonoBehaviour
 {
     public ResourceData CarriedResource { get; private set; } = null;
 
-
     void OnTriggerEnter2D(Collider2D other)
     {
         //pickup
         if (other.CompareTag("Resource") && CarriedResource == null)
         {
+            if (CarriedResource != null)
+            {
+                Debug.LogWarning("Already carrying a resource! Can't pick up another.");
+                return;
+            }
+
             ResourceNode node = other.GetComponent<ResourceNode>();
             if (node != null && !node.isPickedUp)
             {
@@ -34,8 +39,8 @@ public class ResourceCarrier : MonoBehaviour
         }
     }
 
-        bool CompareResource(ResourceData resource)
-        {
-            return CarriedResource.resourceType == resource.resourceType;
-        }
+    bool CompareResource(ResourceData resource)
+    {
+        return CarriedResource.resourceType == resource.resourceType;
+    }
 }
