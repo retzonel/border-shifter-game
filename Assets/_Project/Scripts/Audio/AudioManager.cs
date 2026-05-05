@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         
+        DontDestroyOnLoad(this.gameObject);
         Instance = this;
     }
 
@@ -50,6 +51,6 @@ public class AudioManager : MonoBehaviour
 
     public void SetSFXVolume(float value)
     {
-        musicSource.volume = value;
+        sfxSource.volume = value;
     }
 }

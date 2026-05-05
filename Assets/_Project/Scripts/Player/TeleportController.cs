@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class TeleportController : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class TeleportController : MonoBehaviour
 
     [Space] [SerializeField] private float maxTeleportDistance = 5f;
     [SerializeField] private float clearanceRadius = 0.4f;
-    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private LayerMask teleportableLayer;
 
     void OnEnable()
     {
@@ -62,6 +63,8 @@ public class TeleportController : MonoBehaviour
         pointerPosition.action.performed += ctx => _pointerInput = ctx.ReadValue<Vector2>();
         currentCharges = maxCharges;
         GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
+
+        Physics2D.queriesHitTriggers = true;
     }
 
     private void Update()
@@ -99,25 +102,28 @@ public class TeleportController : MonoBehaviour
         Vector2 targetPos = truePos;
 
         // circle cast to check for obstacles at target position
-        Collider2D hit = Physics2D.OverlapCircle(targetPos, clearanceRadius, obstacleLayer);
+        Collider2D hit = Physics2D.OverlapCircle(targetPos, clearanceRadius, teleportableLayer);
 
         if (hit != null)
         {
-            Debug.Log("Teleport blocked by: " + hit.name);
+            transform.position = targetPos;
+            currentCharges--;
+            GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
+            AttemptingTeleport = false;
+
+            Debug.Log("Teleported! Remaining charges: " + currentCharges);
+
+            if (currentCharges <= 0)
+                EventBus.GameE.TeleportExausted?.Invoke();
+        }
+        else
+        {
+            Debug.Log("Viable area not found at target position!");
             AttemptingTeleport = false;
             return;
         }
 
         // clear area, perform teleport
-        transform.position = targetPos;
-        currentCharges--;
-        GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
-        AttemptingTeleport = false;
-
-        Debug.Log("Teleported! Remaining charges: " + currentCharges);
-
-        if (currentCharges <= 0)
-            EventBus.GameE.TeleportExausted?.Invoke();
     }
 
     void LineRendererSetup()
