@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class TeleportController : MonoBehaviour
 {
     [SerializeField] InputActionReference interactAction, pointerPosition, mouseClickAction;
-    
+
     Vector2 _pointerInput;
     public int maxCharges = 10;
 
@@ -18,14 +18,14 @@ public class TeleportController : MonoBehaviour
         teleportLineRenderer;
 
     [SerializeField] private Transform teleportGunTransform, teleportGunTip;
+    [SerializeField] private GameObject teleportEffectGO;
     private GameObject currentBluePortal;
     private GameObject currentOrangePortal;
 
-    [Space]
-    [SerializeField] private float maxTeleportDistance = 5f;
+    [Space] [SerializeField] private float maxTeleportDistance = 5f;
     [SerializeField] private float clearanceRadius = 0.4f;
     [SerializeField] private LayerMask obstacleLayer;
-    
+
     void OnEnable()
     {
         interactAction.action.Enable();
@@ -62,23 +62,23 @@ public class TeleportController : MonoBehaviour
         pointerPosition.action.performed += ctx => _pointerInput = ctx.ReadValue<Vector2>();
         currentCharges = maxCharges;
         GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
-
     }
 
     private void Update()
     {
         AimAtMouse();
         LineRendererSetup();
-        
+
         CalculateTruePosition();
     }
-    
+
     private Vector2 truePos;
+
     void CalculateTruePosition()
     {
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(_pointerInput);
         Vector2 playerPos = transform.position;
-    
+
         // clamp teleport target to max distance from player
         Vector2 direction = (worldPos - playerPos).normalized;
         float distance = Vector2.Distance(playerPos, worldPos);
@@ -95,7 +95,7 @@ public class TeleportController : MonoBehaviour
             AttemptingTeleport = false;
             return;
         }
-        
+
         Vector2 targetPos = truePos;
 
         // circle cast to check for obstacles at target position
@@ -117,7 +117,7 @@ public class TeleportController : MonoBehaviour
         Debug.Log("Teleported! Remaining charges: " + currentCharges);
 
         if (currentCharges <= 0)
-            GameManager.Instance?.OnTeleportsExhausted();
+            EventBus.GameE.TeleportExausted?.Invoke();
     }
 
     void LineRendererSetup()
@@ -127,10 +127,13 @@ public class TeleportController : MonoBehaviour
             teleportLineRenderer.enabled = true;
             teleportLineRenderer.SetPosition(0, teleportGunTip.position);
             teleportLineRenderer.SetPosition(1, truePos);
+            teleportEffectGO.SetActive(true);
+            teleportEffectGO.transform.position = truePos;
         }
         else if (teleportLineRenderer != null)
         {
             teleportLineRenderer.enabled = false;
+            teleportEffectGO.SetActive(false);
         }
     }
 
@@ -143,7 +146,7 @@ public class TeleportController : MonoBehaviour
         if (portalPrefab != null)
             currentPortal = Instantiate(portalPrefab, position, Quaternion.identity);
     }
-    
+
     void AimAtMouse()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(_pointerInput);
@@ -153,19 +156,20 @@ public class TeleportController : MonoBehaviour
         teleportGunTransform.eulerAngles = new Vector3(0, 0, angle);
 
         Vector3 localScale = Vector3.one;
-        if(angle > 90 || angle < -90)
+        if (angle > 90 || angle < -90)
         {
             localScale.y = -1;
             transform.eulerAngles = new Vector3(0, 180, 0);
-        } else
+        }
+        else
         {
             localScale.y = 1;
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
         teleportGunTransform.localScale = localScale;
-    } 
-    
+    }
+
     //delete later o!!!
     void OnDrawGizmos()
     {

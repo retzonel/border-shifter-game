@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button quitButton;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
-    
+
     void Start()
     {
         playButton.onClick.AddListener(OnPlayClicked);
@@ -15,27 +15,24 @@ public class MainMenu : MonoBehaviour
         musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
     }
-    
+
     private void OnPlayClicked()
     {
-        // Load the main game scene
+        LevelLoader.LoadLevel(2); //2 is the start level 
     }
-    
+
     private void OnQuitClicked()
     {
-        // Quit the application
         Application.Quit();
     }
-    
+
     private void OnMusicVolumeChanged(float value)
     {
-        // Adjust music volume
-        // AudioManager.Instance.SetMusicVolume(value);
+        AudioManager.Instance?.SetMusicVolume(value);
     }
-    
+
     private void OnSFXVolumeChanged(float value)
     {
-        // Adjust SFX volume
-        // AudioManager.Instance.SetSFXVolume(value);
+        AudioManager.Instance?.SetSFXVolume(value);
     }
 }

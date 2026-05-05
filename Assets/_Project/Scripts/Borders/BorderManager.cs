@@ -6,6 +6,7 @@ public class BorderManager : MonoBehaviour
     public  static BorderManager Instance { get; private set; }
     
     [SerializeField] private Border[] borders;
+    [SerializeField] private GameObject fullLandGameObject;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class BorderManager : MonoBehaviour
             return;
         }
         Instance = this;
+        fullLandGameObject?.SetActive(false);
     }
 
     public void CollapseBorders()
@@ -23,5 +25,6 @@ public class BorderManager : MonoBehaviour
         {
             border.Collapse();
         }
+        fullLandGameObject?.SetActive(true);
     }
 }

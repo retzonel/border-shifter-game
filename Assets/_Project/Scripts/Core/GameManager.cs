@@ -4,9 +4,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField] private int totalDeliveriesForLevel = 2; 
+    [SerializeField] private int totalDeliveriesForLevel = 2;
     [SerializeField] private int completedDeliveries = 0;
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -14,18 +14,29 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    
-    public void OnTeleportsExhausted()
+
+    private void Start()
     {
-        //if the player has no more teleports and hasn't completed the deliveries, they lose
-        Debug.Log("LOSE — no teleports left");
+        EventBus.GameE.OnRestartRequested += RestartLevel;
+        EventBus.GameE.OnResourceDelivered += OnResourceDelivered;
     }
-    
-    public void OnResourceDelivered(ResourceData resource)
+
+    private void OnDestroy()
+    {
+        EventBus.GameE.OnRestartRequested -= RestartLevel;
+        EventBus.GameE.OnResourceDelivered -= OnResourceDelivered;
+    }
+
+    public void RestartLevel()
+    {
+        completedDeliveries = 0;
+    }
+
+    void OnResourceDelivered(ResourceData resource)
     {
         completedDeliveries++;
 
@@ -35,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void WinGame()
     {
-        Debug.Log("WIN — borders dissolving!");
         BorderManager.Instance?.CollapseBorders();
+        EventBus.GameE.OnWinLevel?.Invoke();
     }
 }

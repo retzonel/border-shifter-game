@@ -1,13 +1,18 @@
+using System;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
     public static GameplayUI Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI chargesText;
-    [SerializeField] private TextMeshProUGUI carriedResourceText;
+    [SerializeField] private Image carriedResourceIcon;
+    [SerializeField] private Sprite emptyIcon;
+    [SerializeField] private GameObject teleportExhaustedRestartPrompt;
+
 
     void Awake()
     {
@@ -16,28 +21,46 @@ public class GameplayUI : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
+    }
+
+    private void Start()
+    {
+        UpdateCarriedResource(null);
+        EventBus.GameE.TeleportExausted += ShowRestartPrompt;
+    }
+    
+    void ShowRestartPrompt()
+    {
+        if (teleportExhaustedRestartPrompt != null)
+        {
+            teleportExhaustedRestartPrompt.SetActive(true);
+        }
     }
 
     public void UpdateCharges(int current, int max)
     {
-        chargesText.text = $"Teleports: {current} / {max}";
+        chargesText.text = $"{current}";
 
         chargesText.transform.DOKill();
         chargesText.transform.DOPunchScale(Vector3.one * 0.2f, 0.25f);
 
-        if (current <= 2)
-            chargesText.DOColor(Color.red, 0.2f); 
-            else chargesText.DOColor(Color.white, 0.2f);
+        chargesText.DOColor(current <= 2 ? Color.red : Color.white, 0.2f);
     }
 
     public void UpdateCarriedResource(ResourceData resource)
     {
-        carriedResourceText.text = resource != null
-            ? $"Carrying: {resource.resourceName}"
-            : "Carrying: nothing";
+        if (resource == null && emptyIcon != null)
+        {
+            carriedResourceIcon.sprite = emptyIcon;
+            return;
+        }
 
-        carriedResourceText.transform.DOKill();
-        carriedResourceText.transform.DOPunchScale(Vector3.one * 0.15f, 0.2f);
+        carriedResourceIcon.sprite = resource.sprite;
+
+
+        carriedResourceIcon.transform.DOKill();
+        carriedResourceIcon.transform.DOPunchScale(Vector3.one * 0.15f, 0.2f);
     }
 }

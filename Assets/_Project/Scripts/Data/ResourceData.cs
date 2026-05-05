@@ -12,9 +12,17 @@ public enum ResourceType
 {
     Gold,
     Oil,
-    Diamond,
+    Cocoa,
+    Tea,
+    Coffee,
     Uranium,
-    Wood,
-    Stone,
-    Food
+    Livestock,
+    Fish,
+    Bauxite,
+    Grain,
+    Timber,
+    Diamond,
+    Manganese,
+    Cotton,
+    Phosphate
 }

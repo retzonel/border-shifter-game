@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] InputActionReference moveAction, pointerPosition;
+    [SerializeField] InputActionReference moveAction, restartAction;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed = 5f;
@@ -16,11 +16,20 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         moveAction.action.Enable();
+        restartAction.action.Enable();
+        restartAction.action.performed += RequestRestart;
     }
 
     void OnDisable()
     {
         moveAction.action.Disable();
+        restartAction.action.Disable();
+        restartAction.action.performed -= RequestRestart;
+    }
+
+    private void RequestRestart(InputAction.CallbackContext ctx)
+    {
+        EventBus.GameE.OnRestartRequested?.Invoke();
     }
 
     private void Update()
