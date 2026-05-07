@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalDeliveriesForLevel = 2;
     [SerializeField] private int completedDeliveries = 0;
 
+    public enum GameState
+    {
+        Playing,
+        GameOver
+    }
+
+    public GameState CurrentGameState { get; private set; } = GameState.Playing;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,6 +31,13 @@ public class GameManager : MonoBehaviour
     {
         EventBus.GameE.OnRestartRequested += RestartLevel;
         EventBus.GameE.OnResourceDelivered += OnResourceDelivered;
+
+        GameState initialState = GameState.Playing;
+        SetState(initialState);
+    }
+
+    private void Update()
+    {
     }
 
     private void OnDestroy()
@@ -34,6 +49,9 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         completedDeliveries = 0;
+        SetState(GameState.Playing);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
+            .buildIndex);
     }
 
     void OnResourceDelivered(ResourceData resource)
@@ -47,6 +65,18 @@ public class GameManager : MonoBehaviour
     void WinGame()
     {
         BorderManager.Instance?.CollapseBorders();
+
+        SetState(GameState.GameOver);
         EventBus.GameE.OnWinLevel?.Invoke();
+    }
+
+    public void SetState(GameState newState)
+    {
+        CurrentGameState = newState;
+    }
+
+    public GameState GetState()
+    {
+        return CurrentGameState;
     }
 }

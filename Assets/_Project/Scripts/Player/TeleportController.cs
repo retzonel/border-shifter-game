@@ -20,12 +20,14 @@ public class TeleportController : MonoBehaviour
 
     [SerializeField] private Transform teleportGunTransform, teleportGunTip;
     [SerializeField] private GameObject teleportEffectGO;
-    private GameObject currentBluePortal;
-    private GameObject currentOrangePortal;
 
     [Space] [SerializeField] private float maxTeleportDistance = 5f;
     [SerializeField] private float clearanceRadius = 0.4f;
     [SerializeField] private LayerMask teleportableLayer;
+
+    [SerializeField] private AudioClip teleportSFX;
+    [SerializeField] private AudioClip teleportFailSFX;
+    [SerializeField] private AudioClip teleportMachineSFX;
 
     void OnEnable()
     {
@@ -47,11 +49,10 @@ public class TeleportController : MonoBehaviour
         interactAction.action.started += ctx =>
         {
             AttemptingTeleport = !AttemptingTeleport;
-            if (!AttemptingTeleport)
-            {
-                if (currentBluePortal != null)
-                    Destroy(currentBluePortal);
-            }
+            if (AttemptingTeleport)
+                AudioManager.Instance?.PlaySoundLooped(teleportMachineSFX);
+            else
+                AudioManager.Instance?.StopLoopedSound();
         };
         mouseClickAction.action.performed += ctx =>
         {
@@ -69,10 +70,24 @@ public class TeleportController : MonoBehaviour
 
     private void Update()
     {
-        AimAtMouse();
-        LineRendererSetup();
+        if (GameManager.Instance?.GetState() == GameManager.GameState.GameOver)
+        {
+            if (AttemptingTeleport)
+            {
+                AttemptingTeleport = false;
+                AudioManager.Instance?.StopLoopedSound();
+            }
 
-        CalculateTruePosition();
+            teleportLineRenderer.enabled = false;
+            teleportEffectGO.SetActive(false);
+        }
+        else
+        {
+            AimAtMouse();
+            LineRendererSetup();
+
+            CalculateTruePosition();
+        }
     }
 
     private Vector2 truePos;
@@ -92,38 +107,36 @@ public class TeleportController : MonoBehaviour
 
     private void TryTeleport()
     {
+        AudioManager.Instance?.StopLoopedSound();
+
         if (currentCharges <= 0)
         {
-            Debug.Log("No charges left!");
+            AudioManager.Instance?.PlaySound(teleportFailSFX);
             AttemptingTeleport = false;
+            teleportLineRenderer.enabled = false;
+            teleportEffectGO.SetActive(false);
             return;
         }
 
-        Vector2 targetPos = truePos;
-
-        // circle cast to check for obstacles at target position
-        Collider2D hit = Physics2D.OverlapCircle(targetPos, clearanceRadius, teleportableLayer);
+        Collider2D hit = Physics2D.OverlapCircle(truePos, clearanceRadius, teleportableLayer);
 
         if (hit != null)
         {
-            transform.position = targetPos;
+            transform.position = truePos;
             currentCharges--;
             GameplayUI.Instance?.UpdateCharges(currentCharges, maxCharges);
             AttemptingTeleport = false;
 
-            Debug.Log("Teleported! Remaining charges: " + currentCharges);
+            AudioManager.Instance?.PlaySound(teleportSFX);
 
             if (currentCharges <= 0)
                 EventBus.GameE.TeleportExausted?.Invoke();
         }
         else
         {
-            Debug.Log("Viable area not found at target position!");
+            AudioManager.Instance?.PlaySound(teleportFailSFX);
             AttemptingTeleport = false;
-            return;
         }
-
-        // clear area, perform teleport
     }
 
     void LineRendererSetup()
@@ -141,16 +154,6 @@ public class TeleportController : MonoBehaviour
             teleportLineRenderer.enabled = false;
             teleportEffectGO.SetActive(false);
         }
-    }
-
-
-    private void PlacePortal(GameObject portalPrefab, Vector2 position, ref GameObject currentPortal)
-    {
-        if (currentPortal != null)
-            Destroy(currentPortal);
-
-        if (portalPrefab != null)
-            currentPortal = Instantiate(portalPrefab, position, Quaternion.identity);
     }
 
     void AimAtMouse()

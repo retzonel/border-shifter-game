@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7fa1718d2093d1a468b39aa3c4f4d1de
+guid: a56f9c2139a085a44a3efce161e11776
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5468128525105565783
-    second: googly-d_0
+      213: 593830361084002294
+    second: rc_oil 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 450
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: googly-d_0
+      name: rc_oil 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 325
-        height: 330
+        width: 784
+        height: 772
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9afe6eae31e4d14b0800000000000000
-      internalID: -5468128525105565783
+      spriteID: 6fff0413195bd3800800000000000000
+      internalID: 593830361084002294
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      googly-d_0: -5468128525105565783
+      rc_oil 1_0: 593830361084002294
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

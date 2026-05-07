@@ -6,7 +6,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
-    
+    [SerializeField] private AudioSource loopSfxSource;
+
     void Awake()
     {
         if (Instance != null)
@@ -15,7 +16,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         DontDestroyOnLoad(this.gameObject);
         Instance = this;
     }
@@ -34,7 +35,7 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(clip);
         }
     }
-    
+
     public void PlayMusic(AudioClip clip)
     {
         if (clip != null)
@@ -52,5 +53,20 @@ public class AudioManager : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         sfxSource.volume = value;
+    }
+
+
+    public void PlaySoundLooped(AudioClip clip)
+    {
+        if (clip == null) return;
+        loopSfxSource.clip = clip;
+        loopSfxSource.loop = true;
+        loopSfxSource.Play();
+    }
+
+    public void StopLoopedSound()
+    {
+        loopSfxSource.Stop();
+        loopSfxSource.clip = null;
     }
 }

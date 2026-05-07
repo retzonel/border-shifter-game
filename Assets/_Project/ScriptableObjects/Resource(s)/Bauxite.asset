@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bauxite
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Bauxite
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: 1342820684646193192, guid: 57ad8bd4aa665ee43a36c2a357c7374e, type: 3}
   resourceType: 8

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Manganese
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Managanese
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: 5581564802116509292, guid: 4904a333d521f624187d36d48d601dd1, type: 3}
   resourceType: 12

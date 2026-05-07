@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Uranuim
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Oil
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: -1197474124917295461, guid: 16fb88325e9f595468652828c56010d4, type: 3}
   resourceType: 5

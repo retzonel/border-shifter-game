@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Livestock
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Livestock
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: 9191933857736091791, guid: 761b5b2efb9d75642a020d9852d4ecc9, type: 3}
   resourceType: 6

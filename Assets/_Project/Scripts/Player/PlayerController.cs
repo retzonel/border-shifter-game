@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     Vector2 _moveInput, _pointerInput;
 
+    [SerializeField] private AudioClip walkSFX;
+
     void OnEnable()
     {
         moveAction.action.Enable();
@@ -32,14 +34,46 @@ public class PlayerController : MonoBehaviour
         EventBus.GameE.OnRestartRequested?.Invoke();
     }
 
+    [SerializeField] private float walkSFXInterval = 0.35f;
+    private float _walkSFXTimer;
+
     private void Update()
     {
         _moveInput = teleportController.AttemptingTeleport ? Vector2.zero : moveAction.action.ReadValue<Vector2>();
+
+        HandleWalkSFX();
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = _moveInput.normalized * moveSpeed;
+        if (GameManager.Instance?.GetState() != GameManager.GameState.GameOver)
+        {
+            rb.linearVelocity = _moveInput.normalized * moveSpeed;
+        }
+        else
+        {
+            _moveInput = Vector2.zero;
+            rb.linearVelocity = _moveInput;
+        }
         //if teleportation process is active, ignore movement input and set velocity to zero
+    }
+
+
+    private void HandleWalkSFX()
+    {
+        if (_moveInput.magnitude > 0.1f)
+        {
+            _walkSFXTimer -= Time.deltaTime;
+            if (_walkSFXTimer <= 0f)
+            {
+                AudioManager.Instance?.PlaySound(walkSFX);
+                _walkSFXTimer = walkSFXInterval;
+            }
+        }
+        else
+        {
+            // reset so SFX plays immediately on next movement
+            _walkSFXTimer = 0f;
+        }
     }
 }

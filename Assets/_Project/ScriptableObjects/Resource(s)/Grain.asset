@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Grain
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Grain
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: -5336888619714474253, guid: 80851eb5431da0a45b73583798990d93, type: 3}
   resourceType: 9

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Diamond
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: -1807935556885443980, guid: 2135269330b571641bff692816a7ddad, type: 3}
   resourceType: 11

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cotton
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Cotton
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: -195590345457684870, guid: c3c8d14cc45996e4ca8672a226322bf6, type: 3}
   resourceType: 13

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Fish
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: -5444660550195421175, guid: bca9897819504914a89778abc105e823, type: 3}
   resourceType: 7

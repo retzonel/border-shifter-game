@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Oil
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Oil
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: 593830361084002294, guid: a56f9c2139a085a44a3efce161e11776, type: 3}
   resourceType: 1

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Gold
-  sprite: {fileID: 9166486764673038908, guid: d121b52fe952df346bfdc098cb5e9c01, type: 3}
+  sprite: {fileID: 6895835561326212359, guid: d121b52fe952df346bfdc098cb5e9c01, type: 3}
   resourceType: 0

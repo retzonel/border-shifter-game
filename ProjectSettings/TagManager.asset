@@ -6,6 +6,13 @@ TagManager:
   tags:
   - DeliveryZone
   - Resource
+  - ground
+  - Obstacle
+  - BombPickup
+  - Enemy
+  - ExplosionFX
+  - Bullet
+  - HealthBar
   layers:
   - Default
   - TransparentFX
@@ -17,7 +24,7 @@ TagManager:
   - Obstacle
   - Background
   - Teleportabe
-  - 
+  - NoCollison
   - 
   - 
   - 

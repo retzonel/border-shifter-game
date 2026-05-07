@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class BorderManager : MonoBehaviour
 {
-    public  static BorderManager Instance { get; private set; }
-    
+    public static BorderManager Instance { get; private set; }
+
     [SerializeField] private Border[] borders;
     [SerializeField] private GameObject fullLandGameObject;
+    [SerializeField] private Explodable explodable;
 
     private void Awake()
     {
@@ -15,16 +16,16 @@ public class BorderManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         fullLandGameObject?.SetActive(false);
     }
 
     public void CollapseBorders()
     {
-        foreach (var border in borders)
-        {
-            border.Collapse();
-        }
         fullLandGameObject?.SetActive(true);
+        explodable.explode();
+        ExplosionForce explosionForce = GameObject.FindFirstObjectByType<ExplosionForce>();
+        if (explosionForce != null) explosionForce.doExplosion(borders[0].transform.position);
     }
 }

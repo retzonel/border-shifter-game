@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cofee
   m_EditorClassIdentifier: Assembly-CSharp::ResourceData
   resourceName: Cofee
-  sprite: {fileID: -5468128525105565783, guid: 7fa1718d2093d1a468b39aa3c4f4d1de, type: 3}
+  sprite: {fileID: 7254435864120089045, guid: a6d1f98da7c37a1469ff73421d1ca653, type: 3}
   resourceType: 4
