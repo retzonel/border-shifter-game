@@ -3,6 +3,8 @@ using UnityEngine;
 public class ResourceCarrier : MonoBehaviour
 {
     public ResourceData CarriedResource { get; private set; } = null;
+    
+    [SerializeField] AudioClip pickupSFX, deliverySFX;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,6 +23,7 @@ public class ResourceCarrier : MonoBehaviour
                 CarriedResource = node.data;
                 node.OnPickUp();
                 Debug.Log("Picked up: " + CarriedResource.resourceName);
+                    AudioManager.Instance?.PlaySound(pickupSFX);
                 GameplayUI.Instance?.UpdateCarriedResource(CarriedResource);
             }
         }
@@ -34,6 +37,7 @@ public class ResourceCarrier : MonoBehaviour
                 zone.Deliver(CarriedResource);
                 CarriedResource = null;
                 Debug.Log("Delivered!");
+                    AudioManager.Instance?.PlaySound(deliverySFX);
                 GameplayUI.Instance?.UpdateCarriedResource(CarriedResource);
             }
         }
