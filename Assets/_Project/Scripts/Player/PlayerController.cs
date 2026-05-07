@@ -14,28 +14,27 @@ public class PlayerController : MonoBehaviour
     Vector2 _moveInput, _pointerInput;
 
     [SerializeField] private AudioClip walkSFX;
+    [SerializeField] private float walkSFXInterval = 0.35f;
+    private float _walkSFXTimer;
 
-    void OnEnable()
+    void Start()
     {
         moveAction.action.Enable();
         restartAction.action.Enable();
-        restartAction.action.performed += RequestRestart;
+        restartAction.action.started += ctx => { RequestRestart(ctx); };
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         moveAction.action.Disable();
         restartAction.action.Disable();
-        restartAction.action.performed -= RequestRestart;
+        restartAction.action.started -= RequestRestart;
     }
 
     private void RequestRestart(InputAction.CallbackContext ctx)
     {
         EventBus.GameE.OnRestartRequested?.Invoke();
     }
-
-    [SerializeField] private float walkSFXInterval = 0.35f;
-    private float _walkSFXTimer;
 
     private void Update()
     {

@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         musicSource.loop = true;
+        loopSfxSource.loop = true;
         sfxSource.loop = false;
     }
 
@@ -33,6 +34,14 @@ public class AudioManager : MonoBehaviour
         if (clip != null)
         {
             sfxSource.PlayOneShot(clip);
+        }
+    }
+    
+    public void PlaySound(AudioClip clip, float volume)
+    {
+        if (clip != null)
+        {
+            sfxSource.PlayOneShot(clip, volume);
         }
     }
 
@@ -53,6 +62,7 @@ public class AudioManager : MonoBehaviour
     public void SetSFXVolume(float value)
     {
         sfxSource.volume = value;
+        loopSfxSource.volume = value;
     }
 
 

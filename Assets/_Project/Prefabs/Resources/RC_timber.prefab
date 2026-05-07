@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceNode
   data: {fileID: 11400000, guid: b40c940ffc990b441a4a78f4221901c4, type: 2}
   isPickedUp: 0
+  onPickupSFX: {fileID: 8300000, guid: a718caa8e78a71a42b90e03eab3606dc, type: 3}
 --- !u!58 &7279489123151847873
 CircleCollider2D:
   m_ObjectHideFlags: 0

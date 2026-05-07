@@ -7814,6 +7814,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1092470155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &82842741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82842742}
+  m_Layer: 0
+  m_Name: VFX_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &82842742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82842741}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.6651797, y: -1.50124, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1622879514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83258017
 GameObject:
   m_ObjectHideFlags: 0
@@ -14905,6 +14936,23 @@ MonoBehaviour:
   - {fileID: 1092470157}
   fullLandGameObject: {fileID: 1616221300}
   explodable: {fileID: 1092470158}
+  borderCrashSFX:
+  - {fileID: 8300000, guid: 2dff0916aefe0b9448546ef75502550d, type: 3}
+  - {fileID: 8300000, guid: 7bdabb7e6df91804787c1c91cb13b589, type: 3}
+  - {fileID: 8300000, guid: f4879355f3cdcdd4f8642c3b2e746d55, type: 3}
+  - {fileID: 8300000, guid: 3a1a7b7293b2fcb4db2127663137099b, type: 3}
+  - {fileID: 8300000, guid: bc7f5fd415d89664c8a22f2737cb15e4, type: 3}
+  - {fileID: 8300000, guid: 96ac2806b649199478e7807392b785b4, type: 3}
+  - {fileID: 8300000, guid: 593deeddb7b340f45bdc6c63fb1e1539, type: 3}
+  - {fileID: 8300000, guid: e99724c666d9d934b8dfd80c108812bf, type: 3}
+  - {fileID: 8300000, guid: fb24dffd870d87f4aae338b761230e10, type: 3}
+  - {fileID: 8300000, guid: 4274503d8381ae24ea91337d27acedb9, type: 3}
+  - {fileID: 8300000, guid: 06fcb6fb41d6acf4484ac5b8553c1543, type: 3}
+  - {fileID: 8300000, guid: f28c9b17732cb3746a83b702630ca17a, type: 3}
+  - {fileID: 8300000, guid: 6fba173b09c22c44698130a32cdd4c2a, type: 3}
+  - {fileID: 8300000, guid: b15c4e7dd8364ab47b589063ec75d7f5, type: 3}
+  - {fileID: 8300000, guid: c60d8a927eb23ef44bf46a1679d344f1, type: 3}
+  - {fileID: 8300000, guid: b8c1ece8c96aef3489f9aac59cc1fe79, type: 3}
 --- !u!4 &286675231
 Transform:
   m_ObjectHideFlags: 0
@@ -28918,7 +28966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelCompleteUI
   nextLevelButton: {fileID: 873900989}
   mainMenuButton: {fileID: 1665785340}
-  delayBeforeShow: 5
+  delayBeforeShow: 4
   animDuration: 0.5
   panelRect: {fileID: 0}
 --- !u!225 &657394883
@@ -55439,7 +55487,7 @@ MonoBehaviour:
   rb: {fileID: 1397049115}
   moveSpeed: 5
   teleportController: {fileID: 1397049119}
-  walkSFX: {fileID: 0}
+  walkSFX: {fileID: 8300000, guid: f8f46ae5ef0586d40ba260a67e2c525b, type: 3}
   walkSFXInterval: 0.35
 --- !u!58 &1397049118
 CircleCollider2D:
@@ -55504,9 +55552,9 @@ MonoBehaviour:
   teleportableLayer:
     serializedVersion: 2
     m_Bits: 512
-  teleportSFX: {fileID: 0}
-  teleportFailSFX: {fileID: 0}
-  teleportMachineSFX: {fileID: 0}
+  teleportSFX: {fileID: 8300000, guid: e2a4622e1ec74e74290c2e6e6059cc25, type: 3}
+  teleportFailSFX: {fileID: 8300000, guid: 959664db3e4e73e4a89562f720225a53, type: 3}
+  teleportMachineSFX: {fileID: 8300000, guid: 37c9385e9af73bc4f9e485bec17780dc, type: 3}
 --- !u!114 &1397049120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55519,6 +55567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77dc318756ecdb641835ab4c8c9a94bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceCarrier
+  pickupSFX: {fileID: 8300000, guid: c02adf8572ecbb048b490dfd4fe4a326, type: 3}
+  deliverySFX: {fileID: 8300000, guid: 8b48955ca34701c428e0c815d1780a98, type: 3}
 --- !u!95 &1397049121
 Animator:
   serializedVersion: 7
@@ -64672,6 +64722,7 @@ Transform:
   - {fileID: 891261535}
   - {fileID: 1305639937}
   - {fileID: 1529277718}
+  - {fileID: 82842742}
   - {fileID: 1466620721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

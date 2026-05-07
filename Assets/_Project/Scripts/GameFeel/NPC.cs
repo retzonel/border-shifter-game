@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private float squashAmount = 0.2f;
 
     private Vector3 originalScale;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -19,6 +20,16 @@ public class NPC : MonoBehaviour
         bounce.Append(Squash());
         bounce.Append(Stretch());
         bounce.SetLoops(-1); // infinite
+
+        int randomFlip = Random.Range(0, 9999);
+        if (randomFlip % 2 == 0)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
     }
 
     private Tween Squash() =>

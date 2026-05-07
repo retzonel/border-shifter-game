@@ -8,6 +8,8 @@ public class SpawnNpcsOnWin : MonoBehaviour
     [SerializeField] private int maxNpcCount = 6;
     [SerializeField] private int minNpcCount = 3;
 
+    [SerializeField] private AudioClip npcCheerSFX;
+
     private void Start()
     {
         EventBus.GameE.OnWinLevel += SpawnNpcs;
@@ -33,6 +35,7 @@ public class SpawnNpcsOnWin : MonoBehaviour
 
             GameObject npcToSpawn = npcPrefab[UnityEngine.Random.Range(0, npcPrefab.Length)];
             Instantiate(npcToSpawn, spawnPosition, Quaternion.identity);
+            AudioManager.Instance.PlaySound(npcCheerSFX, 0.45f);
         }
     }
 

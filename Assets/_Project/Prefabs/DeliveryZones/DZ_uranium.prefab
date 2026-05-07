@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryZone
   acceptedResource: {fileID: 11400000, guid: 808153e07a0492d43bfbc230db2b9d85, type: 2}
   icon: {fileID: 8795990332071482324}
+  onDeliverySFX: {fileID: 8300000, guid: 2d6bd1b1d77236142b24fe5bf2b9d1d9, type: 3}
 --- !u!1 &8648390189585462858
 GameObject:
   m_ObjectHideFlags: 0

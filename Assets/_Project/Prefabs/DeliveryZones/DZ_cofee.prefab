@@ -397,3 +397,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeliveryZone
   acceptedResource: {fileID: 11400000, guid: fb96bd00d9548b74fb0b9d8afd761410, type: 2}
   icon: {fileID: 5431093079346067862}
+  onDeliverySFX: {fileID: 8300000, guid: 2d6bd1b1d77236142b24fe5bf2b9d1d9, type: 3}

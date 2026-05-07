@@ -11,5 +11,7 @@ public static class EventBus
         public UnityAction OnWinLevel;
         public UnityAction <ResourceData> OnResourceDelivered;
         public UnityAction TeleportExausted;
+
+        public UnityAction<GameObject> PlayVFX;
     }
 }

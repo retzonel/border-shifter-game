@@ -8,6 +8,8 @@ public class BorderManager : MonoBehaviour
     [SerializeField] private Border[] borders;
     [SerializeField] private GameObject fullLandGameObject;
     [SerializeField] private Explodable explodable;
+    
+    [SerializeField] private AudioClip[] borderCrashSFX;
 
     private void Awake()
     {
@@ -27,5 +29,10 @@ public class BorderManager : MonoBehaviour
         explodable.explode();
         ExplosionForce explosionForce = GameObject.FindFirstObjectByType<ExplosionForce>();
         if (explosionForce != null) explosionForce.doExplosion(borders[0].transform.position);
+
+        foreach (var sfx in borderCrashSFX)
+        {
+            AudioManager.Instance?.PlaySound(sfx);
+        }
     }
 }
