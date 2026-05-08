@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.7, y: -5.53, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +108,9 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: b40c940ffc990b441a4a78f4221901c4, type: 2}
   isPickedUp: 0
   onPickupSFX: {fileID: 8300000, guid: a718caa8e78a71a42b90e03eab3606dc, type: 3}
+  bounceSpeed: 0.5
+  squashAmount: 0.08
+  hoverAmount: 0.08
 --- !u!58 &7279489123151847873
 CircleCollider2D:
   m_ObjectHideFlags: 0

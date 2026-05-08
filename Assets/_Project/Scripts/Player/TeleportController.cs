@@ -13,8 +13,6 @@ public class TeleportController : MonoBehaviour
     private int currentCharges;
     public bool AttemptingTeleport { get; private set; }
 
-    [SerializeField] private GameObject bluePorterPrefab, orangePorterPrefab;
-
     [SerializeField] private LineRenderer
         teleportLineRenderer;
 

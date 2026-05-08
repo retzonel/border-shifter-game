@@ -21,8 +21,17 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Levels/2_gha_cdv.unity
     guid: 7e26a349dd1eb63458065283c8b5334d
   - enabled: 1
-    path: Assets/_Project/Scenes/Levels/3_knya_tanz.unity
+    path: Assets/_Project/Scenes/Levels/3_ken_tanz.unity
+    guid: cca27cf022f0e1049af595407cc9f449
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/4_nga_ngr_chd.unity
     guid: d5577c0c0f50d3d4ea7d634cd18f8f2c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/5_sen_mal_gun.unity
+    guid: 208c1e3dfcc55494fad632bc82b0a9e4
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/6_egy_sud_lib.unity
+    guid: 86be9555f22104c46967acdbd93f410c
   - enabled: 1
     path: Assets/_Project/Scenes/CompleteGameScene.unity
     guid: d48f910419535a44dbc48611d766ba44
