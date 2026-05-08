@@ -15,6 +15,8 @@ public class DeliveredPopUpMessage : MonoBehaviour
     private RectTransform _rectTransform;
     private Vector2 _originalPosition;
     private Sequence _currentSequence;
+    
+    [SerializeField] private AudioClip deliveryUISound;
 
     private void Awake()
     {
@@ -57,6 +59,7 @@ public class DeliveredPopUpMessage : MonoBehaviour
         _currentSequence.AppendInterval(displayDuration);
         
         _currentSequence.Append(_canvasGroup.DOFade(0f, hideDuration).SetEase(Ease.InQuad));
+        AudioManager.Instance?.PlaySound(deliveryUISound);
         _currentSequence.OnComplete(Hide);
     }
 }

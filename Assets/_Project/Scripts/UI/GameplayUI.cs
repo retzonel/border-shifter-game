@@ -9,6 +9,7 @@ public class GameplayUI : MonoBehaviour
     public static GameplayUI Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI chargesText;
+    [SerializeField] private TextMeshProUGUI deliveriesText;
     [SerializeField] private Image carriedResourceIcon;
     [SerializeField] private Sprite emptyIcon;
     [SerializeField] private GameObject teleportExhaustedRestartPrompt;
@@ -62,5 +63,13 @@ public class GameplayUI : MonoBehaviour
 
         carriedResourceIcon.transform.DOKill();
         carriedResourceIcon.transform.DOPunchScale(Vector3.one * 0.15f, 0.2f);
+    }
+    
+    public void UpdateDeliveries(int current, int total)
+    {
+        deliveriesText.text = $"{current}/{total}";
+
+        deliveriesText.transform.DOKill();
+        deliveriesText.transform.DOPunchScale(Vector3.one * 0.15f, 0.2f);
     }
 }

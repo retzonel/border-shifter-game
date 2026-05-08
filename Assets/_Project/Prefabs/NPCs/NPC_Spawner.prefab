@@ -49,6 +49,6 @@ MonoBehaviour:
   - {fileID: 2831416774429523315, guid: 53721f05d58b88844aac5db387a183cc, type: 3}
   - {fileID: 5326961148119117113, guid: 206911d3018429049ac4976301da38fa, type: 3}
   - {fileID: 2712215539732320575, guid: 54d24ad8cc385f9448b0f84974d55e66, type: 3}
-  maxNpcCount: 6
-  minNpcCount: 3
+  maxNpcCount: 20
+  minNpcCount: 6
   npcCheerSFX: {fileID: 8300000, guid: 2763799717764aa4aab93cf135a98ff3, type: 3}

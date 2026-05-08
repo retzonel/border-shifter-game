@@ -35,7 +35,7 @@ public class SpawnNpcsOnWin : MonoBehaviour
 
             GameObject npcToSpawn = npcPrefab[UnityEngine.Random.Range(0, npcPrefab.Length)];
             Instantiate(npcToSpawn, spawnPosition, Quaternion.identity);
-            AudioManager.Instance.PlaySound(npcCheerSFX, 0.45f);
+            AudioManager.Instance?.PlaySound(npcCheerSFX, 0.45f);
         }
     }
 

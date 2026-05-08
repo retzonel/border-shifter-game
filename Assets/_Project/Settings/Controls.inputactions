@@ -166,7 +166,7 @@
                 {
                     "name": "",
                     "id": "1c04ea5f-b012-41d1-a6f7-02e963b52893",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -188,7 +188,7 @@
                 {
                     "name": "",
                     "id": "55fb4ee3-e9f5-4c0d-8cc2-3798391810f2",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -14,13 +14,21 @@ public class LevelCompleteUI : MonoBehaviour
 
     [SerializeField] private RectTransform panelRect;
 
+    [Space] [SerializeField] AudioClip buttonClickSound, showPanelSound;
+    
+
     void Start()
     {
         nextLevelButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance?.PlaySound(buttonClickSound);
             LevelLoader.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
         });
-        mainMenuButton.onClick.AddListener(() => { LevelLoader.LoadLevel(0); });
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance?.PlaySound(buttonClickSound);
+            LevelLoader.LoadLevel(0);
+        });
 
         EventBus.GameE.OnWinLevel += Show;
         canvasGroup = GetComponent<CanvasGroup>();
@@ -71,5 +79,6 @@ public class LevelCompleteUI : MonoBehaviour
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
         });
+        AudioManager.Instance?.PlaySound(showPanelSound);
     }
 }

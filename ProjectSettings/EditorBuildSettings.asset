@@ -15,8 +15,17 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/IntroScene.unity
     guid: 27765f04b3f198d429503713347eacb2
   - enabled: 1
-    path: Assets/_Project/Scenes/Dev_PlayGround.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/_Project/Scenes/Levels/1_gbn_cngo.unity
+    guid: b507a1e1f7a96944f954f649a5cef53a
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/2_gha_cdv.unity
+    guid: 7e26a349dd1eb63458065283c8b5334d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/3_knya_tanz.unity
+    guid: d5577c0c0f50d3d4ea7d634cd18f8f2c
+  - enabled: 1
+    path: Assets/_Project/Scenes/CompleteGameScene.unity
+    guid: d48f910419535a44dbc48611d766ba44
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

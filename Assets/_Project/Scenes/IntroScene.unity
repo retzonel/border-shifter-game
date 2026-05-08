@@ -547,8 +547,9 @@ MonoBehaviour:
   storyText: {fileID: 1579716328}
   skipAction: {fileID: 939378819}
   canvasGroup: {fileID: 739615492}
-  typeSpeed: 0.001
+  typeSpeed: 0.085
   fadeOutDuration: 0.6
+  typeSound: {fileID: 8300000, guid: 8b3f438046a6d0544b4ea69837b07ef0, type: 3}
 --- !u!225 &739615492
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -884,8 +885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 0.075
-  FrequencyGain: 0.075
+  AmplitudeGain: 0.01
+  FrequencyGain: 0.01
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1028053169
 MonoBehaviour:

@@ -5,7 +5,7 @@ public class BorderManager : MonoBehaviour
 {
     public static BorderManager Instance { get; private set; }
 
-    [SerializeField] private Border[] borders;
+    [SerializeField] private Border borders;
     [SerializeField] private GameObject fullLandGameObject;
     [SerializeField] private Explodable explodable;
     
@@ -28,7 +28,7 @@ public class BorderManager : MonoBehaviour
         fullLandGameObject?.SetActive(true);
         explodable.explode();
         ExplosionForce explosionForce = GameObject.FindFirstObjectByType<ExplosionForce>();
-        if (explosionForce != null) explosionForce.doExplosion(borders[0].transform.position);
+        if (explosionForce != null) explosionForce.doExplosion(borders.transform.position);
 
         foreach (var sfx in borderCrashSFX)
         {

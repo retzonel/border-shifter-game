@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button quitButton;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
+    
+    [Space][SerializeField] AudioClip buttonClickSound;
 
     void Start()
     {
@@ -18,11 +20,13 @@ public class MainMenu : MonoBehaviour
 
     private void OnPlayClicked()
     {
+        AudioManager.Instance?.PlaySound(buttonClickSound);
         LevelLoader.LoadLevel(2); //2 is the start level 
     }
 
     private void OnQuitClicked()
     {
+        AudioManager.Instance?.PlaySound(buttonClickSound);
         Application.Quit();
     }
 

@@ -29,13 +29,15 @@ public class TeleportController : MonoBehaviour
     [SerializeField] private AudioClip teleportFailSFX;
     [SerializeField] private AudioClip teleportMachineSFX;
 
+    [Space] [SerializeField] private float screenShakeIntensity = 0.5f;
+
     void OnEnable()
     {
         interactAction.action.Enable();
         pointerPosition.action.Enable();
         mouseClickAction.action.Enable();
     }
-
+  
     void OnDisable()
     {
         interactAction.action.Disable();
@@ -70,7 +72,7 @@ public class TeleportController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance?.GetState() == GameManager.GameState.GameOver)
+        if (GameManager.Instance?.GetState() == GameState.GameOver)
         {
             if (AttemptingTeleport)
             {
@@ -128,6 +130,7 @@ public class TeleportController : MonoBehaviour
             AttemptingTeleport = false;
 
             AudioManager.Instance?.PlaySound(teleportSFX);
+            EventBus.GameE.OnScreenShake?.Invoke(screenShakeIntensity);
 
             if (currentCharges <= 0)
                 EventBus.GameE.TeleportExausted?.Invoke();

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] InputActionReference moveAction, restartAction;
+    [SerializeField] InputActionReference moveAction;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed = 5f;
@@ -17,35 +17,48 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkSFXInterval = 0.35f;
     private float _walkSFXTimer;
 
+    [Space] [SerializeField] private Animator animator;
+    
+    [Space]     [SerializeField] private InputActionReference restartAction;
+
     void Start()
     {
         moveAction.action.Enable();
-        restartAction.action.Enable();
-        restartAction.action.started += ctx => { RequestRestart(ctx); };
+        
+        if (restartAction != null)
+        {
+            restartAction.action.Enable();
+            restartAction.action.started += RestartLevel;
+        }
+
     }
 
     void OnDestroy()
     {
         moveAction.action.Disable();
-        restartAction.action.Disable();
-        restartAction.action.started -= RequestRestart;
-    }
-
-    private void RequestRestart(InputAction.CallbackContext ctx)
-    {
-        EventBus.GameE.OnRestartRequested?.Invoke();
+        
+        if (restartAction != null)
+        {
+            restartAction.action.Disable();
+            restartAction.action.started -= RestartLevel;
+        }
     }
 
     private void Update()
     {
         _moveInput = teleportController.AttemptingTeleport ? Vector2.zero : moveAction.action.ReadValue<Vector2>();
 
+
+        animator.SetBool("isWalking", _moveInput.magnitude > 0.1f);
+        
         HandleWalkSFX();
+        
+        
     }
 
     void FixedUpdate()
     {
-        if (GameManager.Instance?.GetState() != GameManager.GameState.GameOver)
+        if (GameManager.Instance?.GetState() != GameState.GameOver)
         {
             rb.linearVelocity = _moveInput.normalized * moveSpeed;
         }
@@ -74,5 +87,13 @@ public class PlayerController : MonoBehaviour
             // reset so SFX plays immediately on next movement
             _walkSFXTimer = 0f;
         }
+    }
+    
+    private void RestartLevel(InputAction.CallbackContext _)
+    {
+        if (GameManager.Instance?.CurrentGameState == GameState.GameOver)
+            return;
+        
+        LevelLoader.LoadLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }

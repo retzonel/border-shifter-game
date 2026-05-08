@@ -7,11 +7,11 @@ public static class EventBus
     
     public class GameEvents
     {
-        public UnityAction OnRestartRequested;
         public UnityAction OnWinLevel;
         public UnityAction <ResourceData> OnResourceDelivered;
         public UnityAction TeleportExausted;
 
-        public UnityAction<GameObject> PlayVFX;
+        public UnityAction<GameObject, Vector3> PlayVFX;
+        public UnityAction<float> OnScreenShake;
     }
 }

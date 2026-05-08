@@ -18,6 +18,8 @@ public class IntroScreen : MonoBehaviour
 
     private Coroutine _typingCoroutine;
     private bool _typingComplete = false;
+    
+    [SerializeField] private AudioClip typeSound;
 
     void Start()
     {
@@ -48,6 +50,10 @@ public class IntroScreen : MonoBehaviour
         foreach (char c in storyLine)
         {
             storyText.text += c;
+
+            if (c != ' ' && c != '\n')
+                AudioManager.Instance?.PlaySound(typeSound);
+
             yield return new WaitForSeconds(typeSpeed);
         }
 
@@ -64,6 +70,7 @@ public class IntroScreen : MonoBehaviour
 
             storyText.text = storyLine;
             _typingComplete = true;
+            Invoke("Dismiss", 2f);
         }
         else
         {

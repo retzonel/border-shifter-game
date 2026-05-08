@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,11 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalDeliveriesForLevel = 2;
     [SerializeField] private int completedDeliveries = 0;
 
-    public enum GameState
-    {
-        Playing,
-        GameOver
-    }
+
 
     public GameState CurrentGameState { get; private set; } = GameState.Playing;
 
@@ -24,30 +21,33 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        EventBus.GameE.OnRestartRequested += RestartLevel;
         EventBus.GameE.OnResourceDelivered += OnResourceDelivered;
 
         GameState initialState = GameState.Playing;
         SetState(initialState);
-    }
+        completedDeliveries = 0;
 
-    private void Update()
-    {
+
+        GameplayUI.Instance?.UpdateDeliveries(completedDeliveries, totalDeliveriesForLevel);
     }
 
     private void OnDestroy()
     {
-        EventBus.GameE.OnRestartRequested -= RestartLevel;
         EventBus.GameE.OnResourceDelivered -= OnResourceDelivered;
+
+
     }
 
-    public void RestartLevel()
+
+    private void RestartLevel(InputAction.CallbackContext _)
     {
+        if (CurrentGameState != GameState.GameOver)
+            return;
+
         completedDeliveries = 0;
         SetState(GameState.Playing);
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene()
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     void OnResourceDelivered(ResourceData resource)
     {
         completedDeliveries++;
+        GameplayUI.Instance?.UpdateDeliveries(completedDeliveries, totalDeliveriesForLevel);
 
         if (completedDeliveries >= totalDeliveriesForLevel)
             WinGame();
@@ -79,4 +80,10 @@ public class GameManager : MonoBehaviour
     {
         return CurrentGameState;
     }
+}
+
+public enum GameState
+{
+    Playing,
+    GameOver
 }

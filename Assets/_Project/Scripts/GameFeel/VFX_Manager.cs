@@ -1,34 +1,42 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class VFX_Manager : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+
+    private void Start()
     {
         EventBus.GameE.PlayVFX += PlayVFX;
+        EventBus.GameE.OnScreenShake += OnScreenShake;
+        
     }
 
     private void OnDestroy()
     {
         EventBus.GameE.PlayVFX -= PlayVFX;
+        EventBus.GameE.OnScreenShake -= OnScreenShake;
     }
 
-    private void PlayVFX(GameObject vfxPrefab)
+    private void OnScreenShake(float intensity = 1f)
     {
-        if (vfxPrefab == null)
-        {
-            Debug.LogWarning("VFX_Manager: Received null VFX prefab.");
-            return;
-        }
-
-        var _ = Instantiate(vfxPrefab, Vector3.zero, Quaternion.identity);
-        StartCoroutine(DisableObject(_));
+        impulseSource.GenerateImpulse(intensity);
     }
 
-    IEnumerator DisableObject(GameObject obj)
+    private void PlayVFX(GameObject vfxPrefab, Vector3 position)
     {
-        yield return new  WaitForSeconds(2f);
+        if (vfxPrefab == null) return;
+
+        GameObject vfx = Instantiate(vfxPrefab, position, Quaternion.identity);
+
+        StartCoroutine(DisableObject(vfx));
+    }
+
+    private IEnumerator DisableObject(GameObject obj)
+    {
+        yield return new WaitForSeconds(2f);
+
         obj.SetActive(false);
     }
 }
