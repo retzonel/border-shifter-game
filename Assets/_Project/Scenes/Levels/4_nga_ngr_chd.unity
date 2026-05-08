@@ -48654,7 +48654,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 23.3
+  orthographic size: 18.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -158116,7 +158116,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 23.3
+    OrthographicSize: 18.6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -191541,8 +191541,6 @@ MonoBehaviour:
   pointerPosition: {fileID: 2072943418}
   mouseClickAction: {fileID: 1050058898}
   maxCharges: 5
-  bluePorterPrefab: {fileID: 3202427541176629145, guid: fce2093611a29034d8149b6e416418a2, type: 3}
-  orangePorterPrefab: {fileID: 2388852361697469088, guid: c3e7599caec943c4882b9583ee5a8199, type: 3}
   teleportLineRenderer: {fileID: 4376770671318692321}
   teleportGunTransform: {fileID: 8384435665448107045}
   teleportGunTip: {fileID: 8329329567373130564}
