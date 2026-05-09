@@ -39,9 +39,4 @@ public class SpawnNpcsOnWin : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, spawnRadius);
-    }
 }

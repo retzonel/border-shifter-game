@@ -1847,6 +1847,8 @@ MonoBehaviour:
 
     @diamondMind
 
+    @retzonel
+
     @creotly'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7181840e292462c4e8d2ebd065873453, type: 2}
@@ -1874,7 +1876,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.35
+  m_fontSize: 30.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

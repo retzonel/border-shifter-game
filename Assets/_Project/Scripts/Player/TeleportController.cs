@@ -180,18 +180,5 @@ public class TeleportController : MonoBehaviour
         teleportGunTransform.localScale = localScale;
     }
 
-    //delete later o!!!
-    void OnDrawGizmos()
-    {
-        if (!AttemptingTeleport) return;
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(_pointerInput);
-        Vector2 playerPos = transform.position;
-        Vector2 direction = (worldPos - playerPos).normalized;
-        float distance = Mathf.Min(Vector2.Distance(playerPos, worldPos), maxTeleportDistance);
-        Vector2 targetPos = playerPos + direction * distance;
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(targetPos, clearanceRadius);
-        Gizmos.DrawLine(playerPos, targetPos);
-    }
 }
