@@ -95119,7 +95119,7 @@ MonoBehaviour:
   interactAction: {fileID: 694382535}
   pointerPosition: {fileID: 2072943418}
   mouseClickAction: {fileID: 1050058898}
-  maxCharges: 10
+  maxCharges: 7
   teleportLineRenderer: {fileID: 4376770671318692321}
   teleportGunTransform: {fileID: 8384435665448107045}
   teleportGunTip: {fileID: 8329329567373130564}

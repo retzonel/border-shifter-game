@@ -10,15 +10,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
-        {
-            Debug.Log("More than one instance of AudioManager found!");
-            Destroy(gameObject);
-            return;
-        }
+       	if(Instance != null && Instance != this)
+		{
+    		Destroy(gameObject);
+    		return;
+		}	
 
-        Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+		Instance = this;
+		DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
