@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f824e2b6b6735014c8e156c1080c7e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceNode
-  data: {fileID: 11400000, guid: b40c940ffc990b441a4a78f4221901c4, type: 2}
+  data: {fileID: 11400000, guid: 564d9e1ee31eacb4eacc5e8a7f2054e0, type: 2}
   isPickedUp: 0
   onPickupSFX: {fileID: 8300000, guid: a718caa8e78a71a42b90e03eab3606dc, type: 3}
   bounceSpeed: 0.5
