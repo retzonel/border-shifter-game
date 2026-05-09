@@ -33,6 +33,18 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Levels/6_egy_sud_lib.unity
     guid: 86be9555f22104c46967acdbd93f410c
   - enabled: 1
+    path: Assets/_Project/Scenes/Levels/7_cam_car_con_gab.unity
+    guid: 82634f5bbc04e3c448917ed6737ad135
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/8_eth_ken_som_sud.unity
+    guid: 8a434a4fcfa30374894b78a445c7f1dd
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/9_west_africa.unity
+    guid: 86e9e8f613e050b4cbd5acb12ed8fd30
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/_10_west_central.unity
+    guid: 62a9304184f2bed46b97bbedd2cf132a
+  - enabled: 1
     path: Assets/_Project/Scenes/CompleteGameScene.unity
     guid: d48f910419535a44dbc48611d766ba44
   m_configObjects:
