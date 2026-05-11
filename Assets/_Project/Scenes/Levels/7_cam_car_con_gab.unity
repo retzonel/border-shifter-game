@@ -6518,8 +6518,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -525946223
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1027316089336844762, guid: bbdf6ac39fb662e418a7e9cc3e320c9a, type: 3}
@@ -18034,7 +18034,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 17
+  orthographic size: 42.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -41241,7 +41241,7 @@ MonoBehaviour:
   chargesText: {fileID: 1952629658}
   deliveriesText: {fileID: 1612654315}
   carriedResourceIcon: {fileID: 508667246}
-  emptyIcon: {fileID: 5584510165694236758, guid: 9d19473b21d0a534397d11414c8fe3f2, type: 3}
+  emptyIcon: {fileID: 21300000, guid: 9d19473b21d0a534397d11414c8fe3f2, type: 3}
   teleportExhaustedRestartPrompt: {fileID: 933649579}
 --- !u!1 &1241629162
 GameObject:
@@ -68823,7 +68823,7 @@ MonoBehaviour:
   teleportGunTransform: {fileID: 8384435665448107045}
   teleportGunTip: {fileID: 8329329567373130564}
   teleportEffectGO: {fileID: 2255605301605377419}
-  maxTeleportDistance: 12
+  maxTeleportDistance: 8
   clearanceRadius: 0.1
   teleportableLayer:
     serializedVersion: 2

@@ -45108,7 +45108,7 @@ MonoBehaviour:
   chargesText: {fileID: 1952629658}
   deliveriesText: {fileID: 1612654315}
   carriedResourceIcon: {fileID: 508667246}
-  emptyIcon: {fileID: 5584510165694236758, guid: 9d19473b21d0a534397d11414c8fe3f2, type: 3}
+  emptyIcon: {fileID: 21300000, guid: 9d19473b21d0a534397d11414c8fe3f2, type: 3}
   teleportExhaustedRestartPrompt: {fileID: 933649579}
 --- !u!43 &1236706366
 Mesh:
